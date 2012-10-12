@@ -1,6 +1,6 @@
 Name:           bison
 BuildRequires:  gcc-c++
-Version:        2.6
+Version:        2.6.2
 Release:        0
 Summary:        The GNU Parser Generator
 License:        GPL-3.0+
