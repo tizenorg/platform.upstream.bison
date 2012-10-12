@@ -131,7 +131,7 @@ m4_pushdef([b4_parse_param], m4_defn([b4_parse_param_orig]))dnl
   ]b4_parser_class_name::b4_parser_class_name[ (]b4_parse_param_decl[)]m4_ifset([b4_parse_param], [
     :])[
 #if ]b4_api_PREFIX[DEBUG
-    ]m4_ifset([b4_parse_param], [  ], [ :])[yydebug_ (false),
+    ]m4_ifset([b4_parse_param], [  ], [ :])[
       yycdebug_ (&std::cerr)]m4_ifset([b4_parse_param], [,])[
 #endif]b4_parse_param_cons[
   {
@@ -199,20 +199,19 @@ m4_pushdef([b4_parse_param], m4_defn([b4_parse_param_orig]))dnl
   ]b4_parser_class_name[::debug_level_type
   ]b4_parser_class_name[::debug_level () const
   {
-    return yydebug_;
+    return yydebug;
   }
 
   void
   ]b4_parser_class_name[::set_debug_level (debug_level_type l)
   {
-    yydebug_ = l;
+    // Actually, it is yydebug which is really used.
+    yydebug = l;
   }
 
 #endif
 ]m4_popdef([b4_parse_param])dnl
-b4_namespace_close[
-
-]])
+b4_namespace_close])
 
 
 # Let glr.c believe that the user arguments include the parser itself.
@@ -320,7 +319,6 @@ b4_user_stype
                                    const location_type* yylocationp);
   private:
     /* Debugging.  */
-    int yydebug_;
     std::ostream* yycdebug_;
 # endif
 
