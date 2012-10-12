@@ -1,3 +1,4 @@
+%define keepstatic 1
 Name:           bison
 BuildRequires:  gcc-c++
 Version:        2.6.2
