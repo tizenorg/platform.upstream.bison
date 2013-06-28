@@ -9,6 +9,7 @@ Group:          Development/Languages/C and C++
 Url:            http://www.gnu.org/software/bison/bison.html
 Source:         bison-%{version}.tar.xz
 Source2:        baselibs.conf
+Source1001: 	bison.manifest
 Requires:       m4
 
 %description
@@ -16,6 +17,7 @@ Bison is a parser generator similar to yacc(1).
 
 %prep
 %setup -q
+cp %{SOURCE1001} .
 
 %build
 %configure --disable-nls
@@ -28,6 +30,7 @@ make %{?_smp_mflags} check
 %make_install
 
 %files 
+%manifest %{name}.manifest
 %dir %{_datadir}/aclocal
 %{_bindir}/bison
 %{_bindir}/yacc
