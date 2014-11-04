@@ -1,6 +1,6 @@
 # Torturing Bison.                                    -*- Autotest -*-
 
-# Copyright (C) 2001-2002, 2004-2007, 2009-2012 Free Software
+# Copyright (C) 2001-2002, 2004-2007, 2009-2013 Free Software
 # Foundation, Inc.
 
 # This program is free software: you can redistribute it and/or modify
@@ -125,7 +125,7 @@ EOF
 ]])
 AT_BISON_OPTION_POPDEFS
 
-AT_CHECK([perl -w ./gengram.pl $2 || exit 77], 0, [stdout])
+AT_CHECK([$PERL -w ./gengram.pl $2 || exit 77], 0, [stdout])
 mv stdout $1
 ])
 
@@ -214,7 +214,7 @@ main (void)
 EOF
 ]])
 
-AT_CHECK([perl -w ./gengram.pl $2 || exit 77], 0, [stdout])
+AT_CHECK([$PERL -w ./gengram.pl $2 || exit 77], 0, [stdout])
 mv stdout $1
 AT_BISON_OPTION_POPDEFS
 ])
@@ -269,6 +269,7 @@ print <<EOF;
 %error-verbose
 %debug
 %{
+]AT_DATA_SOURCE_PROLOGUE[
 # include <stdio.h>
 # include <stdlib.h>
 # include <assert.h>
@@ -350,7 +351,7 @@ main (void)
 EOF
 ]])
 
-AT_CHECK([perl -w ./gengram.pl $2 || exit 77], 0, [stdout])
+AT_CHECK([$PERL -w ./gengram.pl $2 || exit 77], 0, [stdout])
 mv stdout $1
 AT_BISON_OPTION_POPDEFS
 ])
@@ -383,7 +384,7 @@ m4_define([AT_DATA_STACK_TORTURE],
 [AT_BISON_OPTION_PUSHDEFS([$2])
 # A grammar of parens growing the stack thanks to right recursion.
 # exp:
-AT_DATA([input.y],
+AT_DATA_GRAMMAR([input.y],
 [[%{
 #include <errno.h>
 #include <limits.h>
@@ -412,38 +413,44 @@ yylex (void)
     return EOF;
 }
 
+/* Return argv[1] as an int. */
+static int
+get_args (int argc, const char **argv)
+{
+  int res;
+  char *endp;
+  assert (argc == 2);
+  res = strtol (argv[1], &endp, 10);
+  assert (argv[1] != endp);
+  assert (0 <= res);
+  assert (res <= INT_MAX);
+  assert (errno != ERANGE);
+  return res;
+}
+
 int
 main (int argc, const char **argv)
 {
-  char *endp;
-  YYSTYPE yylval_init;
-  assert (argc == 2);
-  yylval_init = strtol (argv[1], &endp, 10);
-  assert (argv[1] != endp);
-  assert (0 <= yylval_init);
-  assert (yylval_init <= INT_MAX);
-  assert (errno != ERANGE);
-  yydebug = 1;
-  {
-    int count;
-    int status;
-]m4_bmatch([$2], [%push-],
-[[    yypstate *ps = yypstate_new ();
-]])[    for (count = 0; count < 2; ++count)
-      {
-        int new_status;
-        yylval = yylval_init;
-]m4_bmatch([$2], [%push-],
-[[        new_status = yypull_parse (ps);
-]],
-[[        new_status = yyparse ();
-]])[        assert (0 <= count || new_status == status);
+  YYSTYPE yylval_init = get_args (argc, argv);
+  int status = 0;
+  int count;
+]m4_bmatch([$2], [api.push-pull both],
+[[  yypstate *ps = yypstate_new ();
+]])[  yydebug = 1;
+  for (count = 0; count < 2; ++count)
+    {
+      int new_status;
+      yylval = yylval_init;
+      new_status = ]m4_bmatch([$2], [api.push-pull both],
+                              [[yypull_parse (ps)]],
+                              [[yyparse ()]])[;
+      if (count == 0)
         status = new_status;
-      }
-]m4_bmatch([$2], [%push-],
-[[    yypstate_delete (ps);
-]])[    return status;
-  }
+      else
+        assert (new_status == status);
+    }]m4_bmatch([$2], [api.push-pull both],[[
+  yypstate_delete (ps);]])[
+  return status;
 }
 ]])
 AT_BISON_OPTION_POPDEFS([$2])

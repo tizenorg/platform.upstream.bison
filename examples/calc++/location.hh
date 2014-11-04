@@ -1,8 +1,8 @@
-/* A Bison parser, made by GNU Bison 2.6.29-ca7b.  */
+/* A Bison parser, made by GNU Bison 2.7.11-68f91.  */
 
 /* Locations for Bison parsers in C++
    
-      Copyright (C) 2002-2007, 2009-2012 Free Software Foundation, Inc.
+      Copyright (C) 2002-2007, 2009-2013 Free Software Foundation, Inc.
    
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -35,18 +35,15 @@
  ** Define the yy::location class.
  */
 
-#ifndef YY_EXAMPLES_CALC_LOCATION_HH
-# define YY_EXAMPLES_CALC_LOCATION_HH
+#ifndef YY_YY_EXAMPLES_CALC_LOCATION_HH_INCLUDED
+# define YY_YY_EXAMPLES_CALC_LOCATION_HH_INCLUDED
 
-# include <iostream>
-# include <string>
 # include "position.hh"
 
 
 namespace yy {
-
 /* Line 166 of location.cc  */
-#line 50 "../../../../examples/calc++/location.hh"
+#line 47 "../../../../examples/calc++/location.hh"
 
   /// Abstract a location.
   class location
@@ -159,7 +156,9 @@ namespace yy {
    **
    ** Avoid duplicate information.
    */
-  inline std::ostream& operator<< (std::ostream& ostr, const location& loc)
+  template <typename YYChar>
+  inline std::basic_ostream<YYChar>&
+  operator<< (std::basic_ostream<YYChar>& ostr, const location& loc)
   {
     position last = loc.end - 1;
     ostr << loc.begin;
@@ -176,8 +175,7 @@ namespace yy {
 
 
 } // yy
+/* Line 296 of location.cc  */
+#line 180 "../../../../examples/calc++/location.hh"
 
-/* Line 294 of location.cc  */
-#line 182 "../../../../examples/calc++/location.hh"
-
-#endif /* !YY_EXAMPLES_CALC_LOCATION_HH  */
+#endif /* !YY_YY_EXAMPLES_CALC_LOCATION_HH_INCLUDED  */

@@ -1,6 +1,6 @@
 %{/* Bison Grammar Parser                             -*- C -*-
 
-   Copyright (C) 2002-2012 Free Software Foundation, Inc.
+   Copyright (C) 2002-2013 Free Software Foundation, Inc.
 
    This file is part of Bison, the GNU Compiler Compiler.
 
@@ -20,6 +20,7 @@
 #include <config.h>
 #include "system.h"
 
+#include "c-ctype.h"
 #include "complain.h"
 #include "conflicts.h"
 #include "files.h"
@@ -93,14 +94,14 @@ current_lhs(symbol *sym, location loc, named_ref *ref)
 %}
 
 %debug
-%verbose
-%defines
-%locations
-%pure-parser
-%error-verbose
+%define api.prefix "gram_"
+%define api.pure
 %define parse.lac full
-%name-prefix="gram_"
+%defines
+%error-verbose
 %expect 0
+%locations
+%verbose
 
 %initial-action
 {
@@ -251,7 +252,7 @@ prologue_declaration:
                         plain_code.code, @1);
       code_scanner_last_string_free ();
     }
-| "%debug"                         { debug_flag = true; }
+| "%debug"                         { debug = true; }
 | "%define" variable content.opt
     {
       muscle_percent_define_insert ($2, @2, $3,
@@ -735,11 +736,11 @@ add_param (char const *type, char *decl, location loc)
   /* Strip the surrounding '{' and '}', and any blanks just inside
      the braces.  */
   --p;
-  while (isspace ((unsigned char) *p))
+  while (c_isspace ((unsigned char) *p))
     --p;
   p[1] = '\0';
   ++decl;
-  while (isspace ((unsigned char) *decl))
+  while (c_isspace ((unsigned char) *decl))
     ++decl;
 
   if (! name_start)

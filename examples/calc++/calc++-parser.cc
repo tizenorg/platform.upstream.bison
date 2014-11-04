@@ -1,8 +1,8 @@
-/* A Bison parser, made by GNU Bison 2.6.29-ca7b.  */
+/* A Bison parser, made by GNU Bison 2.7.11-68f91.  */
 
 /* Skeleton implementation for Bison LALR(1) parsers in C++
    
-      Copyright (C) 2002-2012 Free Software Foundation, Inc.
+      Copyright (C) 2002-2013 Free Software Foundation, Inc.
    
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -33,29 +33,25 @@
 
 /* First part of user declarations.  */
 
-
-/* Line 278 of lalr1.cc  */
-#line 39 "../../../../examples/calc++/calc++-parser.cc"
+/* Line 283 of lalr1.cc  */
+#line 38 "../../../../examples/calc++/calc++-parser.cc"
 
 
 #include "calc++-parser.hh"
 
 /* User implementation prologue.  */
 
-
-/* Line 284 of lalr1.cc  */
-#line 48 "../../../../examples/calc++/calc++-parser.cc"
+/* Line 289 of lalr1.cc  */
+#line 46 "../../../../examples/calc++/calc++-parser.cc"
 /* Unqualified %code blocks.  */
-
-/* Line 285 of lalr1.cc  */
-#line 9708 "../../doc/bison.texi"
+/* Line 290 of lalr1.cc  */
+#line 10280 "../../doc/bison.texi"
 
 # include "calc++-driver.hh"
 
 
-
-/* Line 285 of lalr1.cc  */
-#line 59 "../../../../examples/calc++/calc++-parser.cc"
+/* Line 290 of lalr1.cc  */
+#line 55 "../../../../examples/calc++/calc++-parser.cc"
 
 
 # ifndef YY_NULL
@@ -133,9 +129,9 @@ do {					\
 #else /* !YYDEBUG */
 
 # define YYCDEBUG if (false) std::cerr
-# define YY_SYMBOL_PRINT(Title, Type, Value, Location)
-# define YY_REDUCE_PRINT(Rule)
-# define YY_STACK_PRINT()
+# define YY_SYMBOL_PRINT(Title, Type, Value, Location) YYUSE(Type)
+# define YY_REDUCE_PRINT(Rule)        static_cast<void>(0)
+# define YY_STACK_PRINT()             static_cast<void>(0)
 
 #endif /* !YYDEBUG */
 
@@ -149,9 +145,8 @@ do {					\
 
 
 namespace yy {
-
-/* Line 352 of lalr1.cc  */
-#line 155 "../../../../examples/calc++/calc++-parser.cc"
+/* Line 357 of lalr1.cc  */
+#line 150 "../../../../examples/calc++/calc++-parser.cc"
 
   /* Return YYSTR after stripping away unnecessary quotes and
      backslashes, so that it's suitable for yyerror.  The heuristic is
@@ -221,37 +216,32 @@ namespace yy {
     std::ostream& yyoutput = yyo;
     YYUSE (yyoutput);
     switch (yytype)
-      {
-        case 4: /* "identifier" */
-
-/* Line 422 of lalr1.cc  */
-#line 9737 "../../doc/bison.texi"
-	{ yyoutput << *((*yyvaluep).sval); };
-
-/* Line 422 of lalr1.cc  */
-#line 233 "../../../../examples/calc++/calc++-parser.cc"
-	break;
+    {
+      case 4: /* "identifier" */
+/* Line 425 of lalr1.cc  */
+#line 10309 "../../doc/bison.texi"
+        { yyoutput << *((*yyvaluep).sval); };
+/* Line 425 of lalr1.cc  */
+#line 226 "../../../../examples/calc++/calc++-parser.cc"
+        break;
       case 5: /* "number" */
-
-/* Line 422 of lalr1.cc  */
-#line 9740 "../../doc/bison.texi"
-	{ yyoutput << ((*yyvaluep).ival); };
-
-/* Line 422 of lalr1.cc  */
-#line 242 "../../../../examples/calc++/calc++-parser.cc"
-	break;
+/* Line 425 of lalr1.cc  */
+#line 10312 "../../doc/bison.texi"
+        { yyoutput << ((*yyvaluep).ival); };
+/* Line 425 of lalr1.cc  */
+#line 233 "../../../../examples/calc++/calc++-parser.cc"
+        break;
       case 14: /* exp */
+/* Line 425 of lalr1.cc  */
+#line 10312 "../../doc/bison.texi"
+        { yyoutput << ((*yyvaluep).ival); };
+/* Line 425 of lalr1.cc  */
+#line 240 "../../../../examples/calc++/calc++-parser.cc"
+        break;
 
-/* Line 422 of lalr1.cc  */
-#line 9740 "../../doc/bison.texi"
-	{ yyoutput << ((*yyvaluep).ival); };
-
-/* Line 422 of lalr1.cc  */
-#line 251 "../../../../examples/calc++/calc++-parser.cc"
-	break;
-       default:
-	  break;
-      }
+      default:
+        break;
+    }
   }
 
 
@@ -275,23 +265,22 @@ namespace yy {
     YYUSE (yymsg);
     YYUSE (yyvaluep);
 
-    YY_SYMBOL_PRINT (yymsg, yytype, yyvaluep, yylocationp);
+    if (yymsg)
+      YY_SYMBOL_PRINT (yymsg, yytype, yyvaluep, yylocationp);
 
     switch (yytype)
-      {
-        case 4: /* "identifier" */
+    {
+      case 4: /* "identifier" */
+/* Line 452 of lalr1.cc  */
+#line 10310 "../../doc/bison.texi"
+        { delete ((*yyvaluep).sval); };
+/* Line 452 of lalr1.cc  */
+#line 279 "../../../../examples/calc++/calc++-parser.cc"
+        break;
 
-/* Line 453 of lalr1.cc  */
-#line 9738 "../../doc/bison.texi"
-	{ delete ((*yyvaluep).sval); };
-
-/* Line 453 of lalr1.cc  */
-#line 290 "../../../../examples/calc++/calc++-parser.cc"
-	break;
-
-	default:
-	  break;
-      }
+      default:
+        break;
+    }
   }
 
   void
@@ -348,17 +337,18 @@ namespace yy {
     int yychar = yyempty_;
     int yytoken = 0;
 
-    /* State.  */
+    // State.
     int yyn;
     int yylen = 0;
     int yystate = 0;
 
-    /* Error handling.  */
+    // Error handling.
     int yynerrs_ = 0;
     int yyerrstatus_ = 0;
 
     /// Semantic value of the lookahead.
-    semantic_type yylval;
+    static semantic_type yyval_default;
+    semantic_type yylval = yyval_default;
     /// Location of the lookahead.
     location_type yylloc;
     /// The locations where the error started and ended.
@@ -371,28 +361,30 @@ namespace yy {
 
     int yyresult;
 
+    // FIXME: This shoud be completely indented.  It is not yet to
+    // avoid gratuitous conflicts when merging into the master branch.
+    try
+      {
     YYCDEBUG << "Starting parse" << std::endl;
 
 
 /* User initialization code.  */
-
-/* Line 538 of lalr1.cc  */
-#line 9670 "../../doc/bison.texi"
+/* Line 539 of lalr1.cc  */
+#line 10242 "../../doc/bison.texi"
 {
   // Initialize the initial location.
-  (yylloc).begin.filename = (yylloc).end.filename = &driver.file;
+  yylloc.begin.filename = yylloc.end.filename = &driver.file;
 }
-
-/* Line 538 of lalr1.cc  */
-#line 388 "../../../../examples/calc++/calc++-parser.cc"
+/* Line 539 of lalr1.cc  */
+#line 380 "../../../../examples/calc++/calc++-parser.cc"
 
     /* Initialize the stacks.  The initial state will be pushed in
        yynewstate, since the latter expects the semantical and the
        location values to have been already stored, initialize these
        stacks with a primary value.  */
-    yystate_stack_ = state_stack_type (0);
-    yysemantic_stack_ = semantic_stack_type (0);
-    yylocation_stack_ = location_stack_type (0);
+    yystate_stack_.clear ();
+    yysemantic_stack_.clear ();
+    yylocation_stack_.clear ();
     yysemantic_stack_.push (yylval);
     yylocation_stack_.push (yylloc);
 
@@ -418,10 +410,9 @@ namespace yy {
     /* Read a lookahead token.  */
     if (yychar == yyempty_)
       {
-	YYCDEBUG << "Reading a token: ";
-	yychar = yylex (&yylval, &yylloc, driver);
+        YYCDEBUG << "Reading a token: ";
+        yychar = yylex (&yylval, &yylloc, driver);
       }
-
 
     /* Convert token to internal form.  */
     if (yychar <= yyeof_)
@@ -493,90 +484,83 @@ namespace yy {
     else
       yyval = yysemantic_stack_[0];
 
+    // Compute the default @$.
     {
       slice<location_type, location_stack_type> slice (yylocation_stack_, yylen);
       YYLLOC_DEFAULT (yyloc, slice, yylen);
     }
+
+    // Perform the reduction.
     YY_REDUCE_PRINT (yyn);
     switch (yyn)
       {
-	  case 2:
-
-/* Line 661 of lalr1.cc  */
-#line 9750 "../../doc/bison.texi"
+          case 2:
+/* Line 664 of lalr1.cc  */
+#line 10322 "../../doc/bison.texi"
     { driver.result = (yysemantic_stack_[(2) - (2)].ival); }
     break;
 
   case 3:
-
-/* Line 661 of lalr1.cc  */
-#line 9753 "../../doc/bison.texi"
+/* Line 664 of lalr1.cc  */
+#line 10325 "../../doc/bison.texi"
     {}
     break;
 
   case 4:
-
-/* Line 661 of lalr1.cc  */
-#line 9754 "../../doc/bison.texi"
+/* Line 664 of lalr1.cc  */
+#line 10326 "../../doc/bison.texi"
     {}
     break;
 
   case 5:
-
-/* Line 661 of lalr1.cc  */
-#line 9758 "../../doc/bison.texi"
+/* Line 664 of lalr1.cc  */
+#line 10330 "../../doc/bison.texi"
     { driver.variables[*(yysemantic_stack_[(3) - (1)].sval)] = (yysemantic_stack_[(3) - (3)].ival); delete (yysemantic_stack_[(3) - (1)].sval); }
     break;
 
   case 6:
-
-/* Line 661 of lalr1.cc  */
-#line 9762 "../../doc/bison.texi"
+/* Line 664 of lalr1.cc  */
+#line 10334 "../../doc/bison.texi"
     { (yyval.ival) = (yysemantic_stack_[(3) - (1)].ival) + (yysemantic_stack_[(3) - (3)].ival); }
     break;
 
   case 7:
-
-/* Line 661 of lalr1.cc  */
-#line 9763 "../../doc/bison.texi"
+/* Line 664 of lalr1.cc  */
+#line 10335 "../../doc/bison.texi"
     { (yyval.ival) = (yysemantic_stack_[(3) - (1)].ival) - (yysemantic_stack_[(3) - (3)].ival); }
     break;
 
   case 8:
-
-/* Line 661 of lalr1.cc  */
-#line 9764 "../../doc/bison.texi"
+/* Line 664 of lalr1.cc  */
+#line 10336 "../../doc/bison.texi"
     { (yyval.ival) = (yysemantic_stack_[(3) - (1)].ival) * (yysemantic_stack_[(3) - (3)].ival); }
     break;
 
   case 9:
-
-/* Line 661 of lalr1.cc  */
-#line 9765 "../../doc/bison.texi"
+/* Line 664 of lalr1.cc  */
+#line 10337 "../../doc/bison.texi"
     { (yyval.ival) = (yysemantic_stack_[(3) - (1)].ival) / (yysemantic_stack_[(3) - (3)].ival); }
     break;
 
   case 10:
-
-/* Line 661 of lalr1.cc  */
-#line 9766 "../../doc/bison.texi"
+/* Line 664 of lalr1.cc  */
+#line 10338 "../../doc/bison.texi"
     { (yyval.ival) = driver.variables[*(yysemantic_stack_[(1) - (1)].sval)]; delete (yysemantic_stack_[(1) - (1)].sval); }
     break;
 
   case 11:
-
-/* Line 661 of lalr1.cc  */
-#line 9767 "../../doc/bison.texi"
+/* Line 664 of lalr1.cc  */
+#line 10339 "../../doc/bison.texi"
     { (yyval.ival) = (yysemantic_stack_[(1) - (1)].ival); }
     break;
 
 
-
-/* Line 661 of lalr1.cc  */
-#line 577 "../../../../examples/calc++/calc++-parser.cc"
-	default:
-          break;
+/* Line 664 of lalr1.cc  */
+#line 560 "../../../../examples/calc++/calc++-parser.cc"
+      default:
+        break;
       }
+
     /* User semantic actions sometimes alter yychar, and that requires
        that yytoken be updated with the new translation.  We take the
        approach of translating immediately before every use of yytoken.
@@ -627,20 +611,19 @@ namespace yy {
     yyerror_range[1] = yylloc;
     if (yyerrstatus_ == 3)
       {
-	/* If just tried and failed to reuse lookahead token after an
-	 error, discard it.  */
-
-	if (yychar <= yyeof_)
-	  {
-	  /* Return failure if at end of input.  */
-	  if (yychar == yyeof_)
-	    YYABORT;
-	  }
-	else
-	  {
-	    yydestruct_ ("Error: discarding", yytoken, &yylval, &yylloc);
-	    yychar = yyempty_;
-	  }
+        /* If just tried and failed to reuse lookahead token after an
+           error, discard it.  */
+        if (yychar <= yyeof_)
+          {
+            /* Return failure if at end of input.  */
+            if (yychar == yyeof_)
+              YYABORT;
+          }
+        else
+          {
+            yydestruct_ ("Error: discarding", yytoken, &yylval, &yylloc);
+            yychar = yyempty_;
+          }
       }
 
     /* Else will try to reuse lookahead token after shifting the error
@@ -689,7 +672,7 @@ namespace yy {
 
 	/* Pop the current state because it cannot handle the error token.  */
 	if (yystate_stack_.height () == 1)
-	YYABORT;
+	  YYABORT;
 
 	yyerror_range[1] = yylocation_stack_[0];
 	yydestruct_ ("Error: popping",
@@ -737,16 +720,42 @@ namespace yy {
     /* Do not reclaim the symbols of the rule which action triggered
        this YYABORT or YYACCEPT.  */
     yypop_ (yylen);
-    while (yystate_stack_.height () != 1)
+    while (1 < yystate_stack_.height ())
       {
-	yydestruct_ ("Cleanup: popping",
-		   yystos_[yystate_stack_[0]],
-		   &yysemantic_stack_[0],
-		   &yylocation_stack_[0]);
-	yypop_ ();
+        yydestruct_ ("Cleanup: popping",
+                     yystos_[yystate_stack_[0]],
+                     &yysemantic_stack_[0],
+                     &yylocation_stack_[0]);
+        yypop_ ();
       }
 
     return yyresult;
+    }
+    catch (...)
+      {
+        YYCDEBUG << "Exception caught: cleaning lookahead and stack"
+                 << std::endl;
+        // Do not try to display the values of the reclaimed symbols,
+        // as their printer might throw an exception.
+        if (yychar != yyempty_)
+          {
+            /* Make sure we have latest lookahead translation.  See
+               comments at user semantic actions for why this is
+               necessary.  */
+            yytoken = yytranslate_ (yychar);
+            yydestruct_ (YY_NULL, yytoken, &yylval, &yylloc);
+          }
+
+        while (1 < yystate_stack_.height ())
+          {
+            yydestruct_ (YY_NULL,
+                         yystos_[yystate_stack_[0]],
+                         &yysemantic_stack_[0],
+                         &yylocation_stack_[0]);
+            yypop_ ();
+          }
+        throw;
+      }
   }
 
   // Generate an error message.
@@ -968,8 +977,8 @@ namespace yy {
   const unsigned short int
   calcxx_parser::yyrline_[] =
   {
-         0,  9750,  9750,  9753,  9754,  9757,  9762,  9763,  9764,  9765,
-    9766,  9767
+         0, 10322, 10322, 10325, 10326, 10329, 10334, 10335, 10336, 10337,
+   10338, 10339
   };
 
   // Print the state stack on the debug stream.
@@ -1057,18 +1066,15 @@ namespace yy {
 
 
 } // yy
+/* Line 1135 of lalr1.cc  */
+#line 1071 "../../../../examples/calc++/calc++-parser.cc"
+/* Line 1136 of lalr1.cc  */
+#line 10340 "../../doc/bison.texi"
 
-/* Line 1106 of lalr1.cc  */
-#line 1063 "../../../../examples/calc++/calc++-parser.cc"
-
-/* Line 1107 of lalr1.cc  */
-#line 9768 "../../doc/bison.texi"
-
-#line 9777 "../../doc/bison.texi"
+#line 10349 "../../doc/bison.texi"
 void
 yy::calcxx_parser::error (const yy::calcxx_parser::location_type& l,
                           const std::string& m)
 {
   driver.error (l, m);
 }
-

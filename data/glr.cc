@@ -2,7 +2,7 @@
 
 # C++ GLR skeleton for Bison
 
-# Copyright (C) 2002-2012 Free Software Foundation, Inc.
+# Copyright (C) 2002-2013 Free Software Foundation, Inc.
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -54,7 +54,7 @@ b4_defines_if([],
               [b4_fatal([b4_skeleton[: using %%defines is mandatory]])])
 
 m4_include(b4_pkgdatadir/[c++.m4])
-b4_percent_define_ifdef([[location_type]], [],
+b4_percent_define_ifdef([[api.location.type]], [],
                         [m4_include(b4_pkgdatadir/[location.cc])])
 
 m4_define([b4_parser_class_name],
@@ -87,12 +87,17 @@ m4_define([b4_yy_symbol_print_generate],
 ]b4_parse_param_use[]dnl
 [  yyparser.yy_symbol_print_ (yytype, yyvaluep]b4_locations_if([, yylocationp])[);
 }
-]])
+]])[
 
+# Hijack the initial action to initialize the locations.
+]b4_locations_if([b4_percent_define_ifdef([[api.location.type]], [],
+[m4_define([b4_initial_action],
+[yylloc.initialize ();]m4_ifdef([b4_initial_action], [
+m4_defn([b4_initial_action])]))])])[
 
 # Hijack the post prologue to insert early definition of YYLLOC_DEFAULT
 # and declaration of yyerror.
-m4_append([b4_post_prologue],
+]m4_append([b4_post_prologue],
 [b4_syncline([@oline@], [@ofile@])[
 ]b4_yylloc_default_define[
 #define YYRHSLOC(Rhs, K) ((Rhs)[K].yystate.yyloc)
@@ -162,12 +167,7 @@ m4_pushdef([b4_parse_param], m4_defn([b4_parse_param_orig]))dnl
     std::ostream& yyoutput = debug_stream ();
     std::ostream& yyo = yyoutput;
     YYUSE (yyo);
-    switch (yytype)
-      {
-  ]m4_map([b4_symbol_actions], m4_defn([b4_symbol_printers]))dnl
-[        default:
-          break;
-      }
+    ]b4_symbol_actions([printers])[
   }
 
 
@@ -211,7 +211,8 @@ m4_pushdef([b4_parse_param], m4_defn([b4_parse_param_orig]))dnl
 
 #endif
 ]m4_popdef([b4_parse_param])dnl
-b4_namespace_close])
+b4_namespace_close
+])
 
 
 # Let glr.c believe that the user arguments include the parser itself.
@@ -225,10 +226,9 @@ m4_defn([b4_parse_param]))],
 m4_include(b4_pkgdatadir/[glr.c])
 m4_popdef([b4_parse_param])
 
-m4_divert_push(0)
-@output(b4_spec_defines_file@)@
+b4_output_begin([b4_spec_defines_file])
 b4_copyright([Skeleton interface for Bison GLR parsers in C++],
-             [2002-2006, 2009-2012])[
+             [2002-2006, 2009-2013])[
 
 /* C++ GLR parser skeleton written by Akim Demaille.  */
 
@@ -238,7 +238,7 @@ b4_copyright([Skeleton interface for Bison GLR parsers in C++],
 
 # include <string>
 # include <iostream>
-]b4_percent_define_ifdef([[location_type]], [],
+]b4_percent_define_ifdef([[api.location.type]], [],
                          [[# include "location.hh"]])[
 
 ]b4_YYDEBUG_define[
@@ -262,7 +262,7 @@ b4_user_stype
     typedef ]b4_api_PREFIX[STYPE semantic_type;
 # endif
     /// Symbol locations.
-    typedef ]b4_percent_define_get([[location_type]],
+    typedef ]b4_percent_define_get([[api.location.type]],
                                    [[location]])[ location_type;
     /// Tokens.
     struct token
@@ -339,4 +339,4 @@ b4_percent_define_flag_if([[global_tokens_and_yystype]],
 ]b4_namespace_close[
 ]b4_percent_code_get([[provides]])[
 ]b4_cpp_guard_close([b4_spec_defines_file])[
-]m4_divert_pop(0)
+]b4_output_end()

@@ -1,6 +1,6 @@
 # C++ skeleton for Bison
 
-# Copyright (C) 2002-2007, 2009-2012 Free Software Foundation, Inc.
+# Copyright (C) 2002-2007, 2009-2013 Free Software Foundation, Inc.
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,12 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# We do want M4 expansion after # for CPP macros.
-m4_changecom()
-m4_divert_push(0)dnl
-@output(b4_dir_prefix[]position.hh@)@
+
+b4_output_begin([b4_dir_prefix[]position.hh])
 b4_copyright([Positions for Bison parsers in C++],
-             [2002-2007, 2009-2012])[
+             [2002-2007, 2009-2013])[
 
 /**
  ** \file ]b4_dir_prefix[position.hh
@@ -30,7 +28,7 @@ b4_copyright([Positions for Bison parsers in C++],
 ]b4_cpp_guard_open([b4_dir_prefix[]position.hh])[
 
 # include <algorithm> // std::max
-# include <iosfwd>
+# include <iostream>
 # include <string>
 
 ]b4_null_define[
@@ -87,7 +85,7 @@ b4_copyright([Positions for Bison parsers in C++],
   };
 
   /// Add and assign a position.
-  inline const position&
+  inline position&
   operator+= (position& res, const int width)
   {
     res.columns (width);
@@ -103,7 +101,7 @@ b4_copyright([Positions for Bison parsers in C++],
   }
 
   /// Add and assign a position.
-  inline const position&
+  inline position&
   operator-= (position& res, const int width)
   {
     return res += -width;
@@ -138,8 +136,9 @@ b4_copyright([Positions for Bison parsers in C++],
    ** \param ostr the destination output stream
    ** \param pos a reference to the position to redirect
    */
-  inline std::ostream&
-  operator<< (std::ostream& ostr, const position& pos)
+  template <typename YYChar>
+  inline std::basic_ostream<YYChar>&
+  operator<< (std::basic_ostream<YYChar>& ostr, const position& pos)
   {
     if (pos.filename)
       ostr << *pos.filename << ':';
@@ -148,9 +147,12 @@ b4_copyright([Positions for Bison parsers in C++],
 
 ]b4_namespace_close[
 ]b4_cpp_guard_close([b4_dir_prefix[]position.hh])
-@output(b4_dir_prefix[]location.hh@)@
+b4_output_end()
+
+
+b4_output_begin([b4_dir_prefix[]location.hh])
 b4_copyright([Locations for Bison parsers in C++],
-             [2002-2007, 2009-2012])[
+             [2002-2007, 2009-2013])[
 
 /**
  ** \file ]b4_dir_prefix[location.hh
@@ -159,8 +161,6 @@ b4_copyright([Locations for Bison parsers in C++],
 
 ]b4_cpp_guard_open([b4_dir_prefix[]location.hh])[
 
-# include <iostream>
-# include <string>
 # include "position.hh"
 
 ]b4_namespace_open[
@@ -276,7 +276,9 @@ b4_copyright([Locations for Bison parsers in C++],
    **
    ** Avoid duplicate information.
    */
-  inline std::ostream& operator<< (std::ostream& ostr, const location& loc)
+  template <typename YYChar>
+  inline std::basic_ostream<YYChar>&
+  operator<< (std::basic_ostream<YYChar>& ostr, const location& loc)
   {
     position last = loc.end - 1;
     ostr << loc.begin;
@@ -294,5 +296,4 @@ b4_copyright([Locations for Bison parsers in C++],
 ]b4_namespace_close[
 
 ]b4_cpp_guard_close([b4_dir_prefix[]location.hh])
-m4_divert_pop(0)
-m4_changecom([#])
+b4_output_end()

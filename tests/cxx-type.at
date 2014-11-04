@@ -1,6 +1,6 @@
 # Checking GLR Parsing.                         -*- Autotest -*-
 
-# Copyright (C) 2002-2012 Free Software Foundation, Inc.
+# Copyright (C) 2002-2013 Free Software Foundation, Inc.
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -376,7 +376,7 @@ m4_define([_AT_GLR_STDERR],
 ]])
 
 m4_define([_AT_GLR_STDERR_WITH_LOC],
-[[17.5-4: syntax error
+[[17.5: syntax error
 ]])
 
 m4_define([_AT_VERBOSE_GLR_STDERR],
@@ -384,7 +384,7 @@ m4_define([_AT_VERBOSE_GLR_STDERR],
 ]])
 
 m4_define([_AT_VERBOSE_GLR_STDERR_WITH_LOC],
-[[17.5-4: syntax error, unexpected ID, expecting '=' or '+' or ')'
+[[17.5: syntax error, unexpected ID, expecting '=' or '+' or ')'
 ]])
 
 ## ---------------------------------------------------- ##

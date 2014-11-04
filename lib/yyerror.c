@@ -1,6 +1,6 @@
 /* Yacc library error-printing function.
 
-   Copyright (C) 2002, 2009-2012 Free Software Foundation, Inc.
+   Copyright (C) 2002, 2009-2013 Free Software Foundation, Inc.
 
    This file is part of Bison, the GNU Compiler Compiler.
 
@@ -16,6 +16,8 @@
 
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
+
+#include <config.h>
 
 #include <stdio.h>
 

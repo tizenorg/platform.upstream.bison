@@ -1,6 +1,6 @@
 ## Process this file with automake to produce Makefile.in -*-Makefile-*-
 
-## Copyright (C) 2001-2003, 2005-2012 Free Software Foundation, Inc.
+## Copyright (C) 2001-2003, 2005-2013 Free Software Foundation, Inc.
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ $(srcdir)/cross-options.texi: $(top_srcdir)/src/getargs.c $(CROSS_OPTIONS_PL)
 	$(AM_V_at)rm -f $@.tmp
 	$(AM_V_at)cd $(top_builddir)/src && $(MAKE) $(AM_MAKEFLAGS) bison
 	$(AM_V_at)$(top_builddir)/src/bison --help \
-	  | perl $(CROSS_OPTIONS_PL) $(top_srcdir)/src/scan-gram.l >$@.tmp
+	  | $(PERL) $(CROSS_OPTIONS_PL) $(top_srcdir)/src/scan-gram.l >$@.tmp
 	$(AM_V_at)diff -u $@~ $@.tmp || true
 	$(AM_V_at)mv $@.tmp $@
 MAINTAINERCLEANFILES = $(srcdir)/cross-options.texi
@@ -95,6 +95,37 @@ PREPATH = $(top_builddir)/src
 	$(AM_V_at)rm -f $@*.t
 
 nodist_man_MANS = yacc.1
+
+## ------------------------------ ##
+## Graphviz examples generation.  ##
+## ------------------------------ ##
+
+CLEANDIRS += figs
+FIGS_DOT = figs/example.dot figs/example-reduce.dot figs/example-shift.dot
+EXTRA_DIST +=								\
+  figs/example.y							\
+  $(FIGS_DOT)								\
+  $(FIGS_DOT:.dot=.eps) $(FIGS_DOT:.dot=.pdf) $(FIGS_DOT:.dot=.png)
+SUFFIXES += .dot .eps .pdf .png
+
+bison.dvi:  $(FIGS_DOT:.dot=.eps)
+bison.html: $(FIGS_DOT:.dot=.png)
+bison.pdf:  $(FIGS_DOT:.dot=.pdf)
+
+.dot.eps:
+	$(AM_V_GEN) $(MKDIR_P) `echo "./$@" | sed -e 's,/[^/]*$$,,'`
+	$(AM_V_at) $(DOT) -Gmargin=0 -Teps $< >$@.tmp
+	$(AM_V_at) mv $@.tmp $@
+
+.dot.pdf:
+	$(AM_V_GEN) $(MKDIR_P) `echo "./$@" | sed -e 's,/[^/]*$$,,'`
+	$(AM_V_at) $(DOT) -Gmargin=0 -Tpdf $< >$@.tmp
+	$(AM_V_at) mv $@.tmp $@
+
+.dot.png:
+	$(AM_V_GEN) $(MKDIR_P) `echo "./$@" | sed -e 's,/[^/]*$$,,'`
+	$(AM_V_at) $(DOT) -Gmargin=0 -Tpng $< >$@.tmp
+	$(AM_V_at) mv $@.tmp $@
 
 ## -------------- ##
 ## Doxygenation.  ##

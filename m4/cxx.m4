@@ -1,7 +1,7 @@
 # -*- Autoconf -*-
 # Sanity-test a C++ compiler.
 #
-# Copyright (C) 2004, 2006, 2009-2012 Free Software Foundation, Inc.
+# Copyright (C) 2004, 2006, 2009-2013 Free Software Foundation, Inc.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -57,4 +57,13 @@ AC_DEFUN([BISON_TEST_FOR_WORKING_CXX_COMPILER],
 
  AC_SUBST([BISON_CXX_WORKS])
  AM_CONDITIONAL(BISON_CXX_WORKS, test $bison_cv_cxx_works = yes)
+])
+
+# BISON_CXX_COMPILER_POSIXLY_CORRECT
+# ----------------------------------
+# Whether the C++ compiler supports -g in POSIXLY_CORRECT mode.
+AC_DEFUN([BISON_CXX_COMPILER_POSIXLY_CORRECT],
+[AC_LANG_PUSH([C++])
+BISON_LANG_COMPILER_POSIXLY_CORRECT
+AC_LANG_POP([C++])
 ])

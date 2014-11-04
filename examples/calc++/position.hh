@@ -1,8 +1,8 @@
-/* A Bison parser, made by GNU Bison 2.6.29-ca7b.  */
+/* A Bison parser, made by GNU Bison 2.7.11-68f91.  */
 
 /* Positions for Bison parsers in C++
    
-      Copyright (C) 2002-2007, 2009-2012 Free Software Foundation, Inc.
+      Copyright (C) 2002-2007, 2009-2013 Free Software Foundation, Inc.
    
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -35,11 +35,11 @@
  ** Define the yy::position class.
  */
 
-#ifndef YY_EXAMPLES_CALC_POSITION_HH
-# define YY_EXAMPLES_CALC_POSITION_HH
+#ifndef YY_YY_EXAMPLES_CALC_POSITION_HH_INCLUDED
+# define YY_YY_EXAMPLES_CALC_POSITION_HH_INCLUDED
 
 # include <algorithm> // std::max
-# include <iosfwd>
+# include <iostream>
 # include <string>
 
 # ifndef YY_NULL
@@ -52,9 +52,8 @@
 
 
 namespace yy {
-
-/* Line 38 of location.cc  */
-#line 58 "../../../../examples/calc++/position.hh"
+/* Line 36 of location.cc  */
+#line 57 "../../../../examples/calc++/position.hh"
   /// Abstract a position.
   class position
   {
@@ -106,7 +105,7 @@ namespace yy {
   };
 
   /// Add and assign a position.
-  inline const position&
+  inline position&
   operator+= (position& res, const int width)
   {
     res.columns (width);
@@ -122,7 +121,7 @@ namespace yy {
   }
 
   /// Add and assign a position.
-  inline const position&
+  inline position&
   operator-= (position& res, const int width)
   {
     return res += -width;
@@ -157,8 +156,9 @@ namespace yy {
    ** \param ostr the destination output stream
    ** \param pos a reference to the position to redirect
    */
-  inline std::ostream&
-  operator<< (std::ostream& ostr, const position& pos)
+  template <typename YYChar>
+  inline std::basic_ostream<YYChar>&
+  operator<< (std::basic_ostream<YYChar>& ostr, const position& pos)
   {
     if (pos.filename)
       ostr << *pos.filename << ':';
@@ -167,7 +167,6 @@ namespace yy {
 
 
 } // yy
-
-/* Line 149 of location.cc  */
-#line 173 "../../../../examples/calc++/position.hh"
-#endif /* !YY_EXAMPLES_CALC_POSITION_HH  */
+/* Line 148 of location.cc  */
+#line 172 "../../../../examples/calc++/position.hh"
+#endif /* !YY_YY_EXAMPLES_CALC_POSITION_HH_INCLUDED  */

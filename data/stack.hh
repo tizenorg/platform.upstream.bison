@@ -1,6 +1,6 @@
 # C++ skeleton for Bison
 
-# Copyright (C) 2002-2012 Free Software Foundation, Inc.
+# Copyright (C) 2002-2013 Free Software Foundation, Inc.
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,14 +16,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 m4_pushdef([b4_copyright_years],
-           [2002-2012])
+           [2002-2013])
 
-# We do want M4 expansion after # for CPP macros.
-m4_changecom()
-m4_divert_push(0)dnl
-@output(b4_dir_prefix[]stack.hh@)@
+b4_output_begin([b4_dir_prefix[]stack.hh])
 b4_copyright([Stack handling for Bison parsers in C++],
-             [2002-2012])[
+             [2002-2013])[
 
 /**
  ** \file ]b4_dir_prefix[stack.hh
@@ -80,6 +77,12 @@ b4_copyright([Stack handling for Bison parsers in C++],
         seq_.pop_front ();
     }
 
+    void
+    clear ()
+    {
+      seq_.clear ();
+    }
+
     inline
     unsigned int
     height () const
@@ -91,6 +94,8 @@ b4_copyright([Stack handling for Bison parsers in C++],
     inline const_iterator end () const { return seq_.rend (); }
 
   private:
+    stack (const stack&);
+    stack& operator= (const stack&);
     S seq_;
   };
 
@@ -119,6 +124,6 @@ b4_copyright([Stack handling for Bison parsers in C++],
 ]b4_namespace_close[
 
 ]b4_cpp_guard_close([b4_dir_prefix[]stack.hh])
-m4_divert_pop(0)
-m4_popdef([b4_copyright_years])dnl
-m4_changecom([#])
+b4_output_end()
+
+m4_popdef([b4_copyright_years])
